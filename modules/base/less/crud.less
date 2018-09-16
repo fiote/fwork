@@ -1,0 +1,51 @@
+.identifier-box {
+	text-align: left;
+    border-radius: 3px;
+    border: 1px solid #eaeaea;
+    padding: 15px;
+}
+
+@colorDelete: #F44336;
+.swal-button--delete {
+	background: @colorDelete;
+	&:active { background: darken(@colorDelete,10%); }
+}
+
+@colorNevermind: #BDBDBD;
+.swal-button--nevermind {
+	background: @colorNevermind;
+	&:active { background: darken(@colorNevermind,10%); }
+}
+
+#crud .daterangepicker .two.fields {
+	margin-bottom: 0px;
+}
+
+#crud {
+	#btnAdd {
+		height: 39px;
+	}
+}
+
+
+.ui.dimmer {
+  	display: flex !important;
+}
+
+.ui.modal {
+  	margin-top: 0px !important;
+  	top: 0px !important;
+}
+
+.ui.menu:not(.vertical) {
+	.item {
+		width: 45px;
+		padding: 12px 0px 10px;
+		text-align: center;
+		display: inline-block;
+
+		&.active {
+			padding-top: 12px;
+		}
+	}
+}

@@ -1,0 +1,93 @@
+.colorpicker-wrapper {
+	position: relative;
+
+    .ui.basic.label {
+    	width: 38px;
+    	border-radius: 0px;
+    }
+
+	material-picker {
+	    display: none;
+	    position: absolute;
+	    bottom: 40px;
+	    right: -1px;
+	    z-index: 100;
+
+	    &.active {
+			display: block;    	
+	    }
+
+		.materialpicker-colors {
+		    -webkit-user-select: none;
+
+		    user-select: none;
+		    position: relative;
+		    border: 1px solid #FFF;
+		    border-radius: 2px;
+		    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+		    cursor: default;
+
+			width: 192px;
+		    float: right;
+		    margin-right: 2px;
+
+			div.selected {
+		    	position: relative;
+		    	z-index: 2;
+		    	box-shadow: 0 0 4px #000;
+		    	border: 2px solid #FFF;
+			}
+		}
+
+		div.materialpicker-white.selected {
+		    border-color: #78909C;
+		}
+		.materialpicker.ng-invalid .materialpicker-colors {
+		    border-color: #a94442;
+		    box-shadow: 0 1px 5px #a94442;
+		}
+	}
+}
+
+.ui.form {
+	formgrid {
+		input[type=checkbox] {
+			width: 25px;
+			height: 25px;
+			margin: 5px;
+			vertical-align: middle;
+		}
+		select.wid70 {
+			max-width: 70px;
+		}
+		select.wid100 {
+			max-width: 100px;
+		}
+		select.wid120 {
+			max-width: 120px;
+		}
+		.three.wide.field > select.wid100 {
+			max-width: 100%;
+		}
+		.three.wide.field > select.wid120 {
+			max-width: 100%;
+		}
+	}
+
+	.field-label {
+		height: 19px;
+		white-space: nowrap;
+	}
+
+	.padded {
+		padding-top: 24px;
+	}
+}
+
+// fix modal
+
+@media only screen and (min-width: 992px) {
+	.ui.small.modal {
+    	width: 840px;
+	}
+}

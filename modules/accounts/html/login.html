@@ -1,0 +1,30 @@
+<div id="login" class='ui container' ng-controller='loginController as lCtrl'>
+	<div id='header_logo'></div>
+
+	<div class="ui raised card form" ng-class='{loading:lCtrl.loading}'>
+		<div class="content">
+			<div class="header">Login</div>
+		</div>
+		<div class="content">
+			<form id='login' class="ui form" ng-submit='lCtrl.submit()'>
+				<div class="field" ng-class='{error:lCtrl.errors.username}'>
+					<label>Username</label>
+					<input type="text" ng-model="lCtrl.form.username" placeholder="Username">					
+				</div>
+				<div class="field" ng-class='{error:lCtrl.errors.password}'>
+					<label>Password</label>
+					<input type="password" ng-model="lCtrl.form.password" placeholder="Password">
+				</div>
+				<div class="right aligned">
+					<button type='submit'  class="ui button">Sign In</button>
+				</div>
+			</form>
+		</div>
+		<!-- 
+		<div class="extra center aligned content">
+			<a href='#'>Forgot Credentials?</a> | <a href='#'>Register!</a>
+		</div>
+	-->
+	</div>
+
+</div>

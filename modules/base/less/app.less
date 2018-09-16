@@ -1,0 +1,181 @@
+@import (reference) "../../base/less/vars.less";
+
+// ===============================================================
+// GLOBAL
+// ===============================================================
+
+html {
+}
+
+body {
+	background: #FFFFFF url('M_BASE/images/bgs/top_gradient.png') repeat-x;
+	overflow-y: scroll;
+	min-height: 100vh;
+	padding-top: 20px;
+
+	&.dimmed {
+		padding-right: 17px;
+	}
+}
+
+html, body {
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.ui.form input[type=text]:disabled {
+	opacity: 1;
+	color: black;
+	background: #f1f1f1;
+}
+
+div.wide.field {
+	// border: 1px solid lightgray;
+}
+
+// ===============================================================
+// HELPERS
+// ===============================================================
+
+.ui.hidden {
+	display: none;
+}
+
+.ui.centered {
+	text-align: center;
+}
+
+// ===============================================================
+// BLOCKS
+// ===============================================================
+
+ui-view > [ng-controller] {
+	padding-bottom: 30px;
+}
+
+.ui.block {
+	display: block;
+}
+
+.ui.container {
+	margin-bottom: 20px;
+}
+
+.ui.cover {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 20;
+	display: none;
+	background: rgba(255, 255, 255, 0.8);
+
+	&.loading {
+		display: block;
+	}
+}
+
+// ===============================================================
+// TABLES
+// ===============================================================
+
+.ui.table {	
+	thead {
+		th.id {
+			text-align: center;
+			width: 65px;
+		}
+		th.actions {
+			&.actions-1x {
+				width: 71px;
+			}
+			&.actions-2x {
+				width: 99px;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+		}
+		td.id {
+			text-align: center;
+		}
+		td.actions {
+			padding: 5px;
+			text-align: center;
+			button {
+				margin: 0px 2px;
+			}
+		}
+	}	
+}
+
+// ===============================================================
+// HEADER
+// ===============================================================
+
+#header_logo {
+	width: 300px;
+	height: 125px;
+	display: block;
+	margin: 0px auto 30px;
+	background-image: url('M_BASE/images/logos/header_logo.png');
+	background-size: cover;
+}
+
+.ui.block.header {
+	color: white;
+	&:extend(.main-gradient);
+}
+
+@bgTopAction: #fcf4ff;
+@bgBottomAction: #b199b8;
+
+.top-action, .bottom-action {
+	position: fixed;
+	cursor: pointer;
+	z-index: 10;
+	padding: 7px 15px;
+    color: #000;
+    min-width: 100px;
+	text-align: center;
+	margin: 5px;
+	border-radius: 3px;
+	box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15);
+	
+	&:hover {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	&.left {
+		left: 0px;
+	}
+
+	&.right {
+		right: 0px;
+	}
+}
+
+.top-action {
+	top: 0px;
+	background: @bgTopAction;
+
+	&:active {
+		top: 1px;
+		background: darken(@bgTopAction,3%);
+	}
+}
+
+.bottom-action {
+	bottom: 0px;
+	background: @bgBottomAction;
+
+	&:active {
+		bottom: -1px;
+		background: darken(@bgBottomAction,3%);
+	}
+}

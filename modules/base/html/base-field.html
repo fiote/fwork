@@ -1,0 +1,83 @@
+<div class="{{field.width}} wide field {{field.divclass}}" ng-class="{error:errors[field.code], breaktext:field.breaktext, padded:field.padded, symbold:field.x_symbol_exists}" ng-hide='field.hidden'>
+	<label class='field-label' ng-hide='field.inline'>{{field.label}}</label>
+
+	<div ng-if='field.isText'>
+		<div ng-if='field.presymbol_exists' class="{{field.symbol_wrapper}}">
+			<div class="ui label">{{field.presymbol}}</div>
+			<input type="text" class="{{field.extraclass}}" ng-disabled="field.disabled" ng-model="form[field.code]" placeholder="{{field.placeholder}}" crud-field='{{field.code}}' crud-check="{{field.check}}">
+		</div>
+		<div ng-if='field.symbol_exists' class="{{field.symbol_wrapper}}">
+			<input type="text" class="{{field.extraclass}}" ng-disabled="field.disabled" ng-model="form[field.code]" placeholder="{{field.placeholder}}" crud-field='{{field.code}}' crud-check="{{field.check}}">
+			<div class="ui label">{{field.symbol}}</div>
+		</div>
+		<div ng-if='!field.x_symbol_exists'>
+			<input type="text" class="{{field.extraclass}}" ng-disabled="field.disabled" ng-model="form[field.code]" placeholder="{{field.placeholder}}" crud-field='{{field.code}}' crud-check="{{field.check}}">
+		</div>
+	</div>
+
+	<div ng-if='field.isDatePicker'>
+		<input type="text" ng-model="form[field.code]" placeholder="{{field.placeholder}}" crud-field='{{field.code}}' crud-check="{{field.check}}" input-calendar calendar-type="date" ng-calendar-field='field.code'>
+	</div>
+
+	<div ng-if='field.isDateRangePicker' class='daterangepicker'>
+		<div class='two fields'>
+			<div class='field'>							
+				<input type="text" ng-model="form[field.code_start]" placeholder="Date From" crud-field='{{field.code_start}}' crud-check="{{field.check}}" input-calendar calendar-type="date" ng-calendar-field='field.code_start' ng-calendar-end='field.code_end' readonly >
+			</div>
+			<div class='field'>
+				<input type="text" ng-model="form[field.code_end]" placeholder="Date To" crud-field='{{field.code_end}}' crud-check="{{field.check}}" input-calendar calendar-type="date" ng-calendar-field='field.code_end' ng-calendar-start='field.code_start' readonly >
+			</div>
+		</div>
+	</div>
+
+	<div ng-if='field.isCheckbox'>
+		<label>
+			<input type='checkbox' ng-model="form[field.code]" crud-field='{{field.code}}' crud-check="{{field.check}}">
+			<span ng-show='field.inline'>{{field.label}}</span>
+		</label>
+	</div>
+
+	<div ng-if='field.isTimePicker'>
+		<input type="text" ng-model="form[field.code]" placeholder="{{field.placeholder}}" crud-field='{{field.code}}' crud-check="{{field.check}}" input-calendar calendar-type="time" readonly >
+	</div>
+
+	<div ng-if='field.isSelect && !field.search'>
+		<span ng-show='field.inline'>{{field.label}}</span>
+		<select ng-model="form[field.code]" ng-disabled="field.disabled" loading="field.loading" crud-field='{{field.code}}' crud-check="{{field.check}}" crud-value='{{form[field.code]}}' class="{{field.extraclass}}"> 
+			<option ng-repeat='opt in field.options' value='{{opt.value}}'>{{opt.label}}</option>
+		</select>
+	</div>
+
+	<select ng-if='field.isSelect && field.search' ng-model="form[field.code]" loading="field.loading" crud-field='{{field.code}}' crud-check="{{field.check}}" crud-value='{{form[field.code]}}' class='ui search select dropdown' input-search crud='crud'>
+		<option ng-repeat='opt in field.options' value='{{opt.value}}'>{{opt.label}}</option>
+	</select>		
+	
+	<textarea ng-if='field.isTextarea' ng-model="form[field.code]" rows="{{field.rows}}" placeholder="{{field.placeholder}}" crud-field='{{field.code}}' crud-check="{{field.check}}"></textarea>
+
+	<div ng-if='field.isColorPicker' class='colorpicker-wrapper ui left labeled input'>
+		<div class="ui basic label" style="background-color:{{form[field.code]}}"></div>
+		<input type="text" ng-model="form[field.code]" placeholder="{{field.placeholder}}" crud-field='{{field.code}}' crud-check="{{field.check}}" material-picker-input >
+		<material-picker format="'hex'" size="10" ng-model="form[field.code]"></material-picker>
+	</div>
+
+	<div ng-if='field.isButton'>
+		<button class="ui button">{{field.label}}</button>
+	</div>
+
+	<div ng-if='field.isTitle'>
+		<h3 class='title-line'><span ng-bind-html="field.text"></span></h3>
+	</div>
+
+	<div ng-if='field.isSubTitle'>
+		<h3 ng-bind-html="field.text"></h3>	
+	</div>
+
+	<div ng-if='field.isLabel'>
+		<b ng-bind-html="field.text"></b>
+	</div>
+
+	<div ng-if='field.isObservation'>
+		<span ng-bind-html="field.text"></span>
+	</div>
+
+</div>

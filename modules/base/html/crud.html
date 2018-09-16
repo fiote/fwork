@@ -1,0 +1,78 @@
+<div id='crud' class='ui container'>
+	<h3 ng-if='title' class="ui block header">
+	  	{{dataset.data.subject_ucf}} List
+	</h3>
+
+	<div class='' ng-show='dataset.loading'>
+		<div class="ui active indeterminate centered inline text loader">Loading...</div>
+	</div>
+
+	<div class='table-list-container' ng-hide='dataset.loading'>
+
+		<form ng-if='dataset.filtergrid' ng-show='transclude_filter' ng-submit='dataset.submitFilters($event)' class='ui form'>
+			<ng-transclude ng-transclude-slot='filter'></ng-transclude>
+			<div ng-hide='dataset.data.livesearch'>
+				<button class="ui button" type="submit">Search</button>
+				<button class="ui button" type="reset" ng-click='dataset.resetFilters($event)'>Reset</button>
+			</div>
+		</form>
+
+		<table class="ui celled selectable table" ng-hide='dataset.hideTable'>
+			<thead>
+				<tr>
+					<th ng-repeat='column in dataset.data.table.columns' class='{{column.code}}'>{{column.label}}</th>
+					<th ng-show='actions.length' class='actions actions-{{actions.length}}x'>Actions</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr ng-repeat='entry in dataset.filteredRows = (dataset.list | filter:dataset.filterRows) | limitTo:dataset.pagingLimit():dataset.pagingOffset()' ng-init='$last && dataset.afterLoaded()'>
+					<td ng-repeat='column in dataset.data.table.columns' class='{{column.code}}'>
+						<div ng-bind-html='entry[column.code] | html'></div>
+					</td>
+					<td ng-show='actions.length' class='actions'>
+						<button ng-repeat='act in actions' ng-click='dataset.clickAction($event,act,entry)' class='ui icon {{act.color}} button'><i class='{{act.icon}} icon'></i></button>
+					</td>
+				</tr>
+			</tbody>
+
+			<tfoot ng-if='dataset.data.table.canPage || dataset.data.table.canAdd'>
+				<tr>
+					<th colspan="{{dataset.data.table.columns.length+1}}">
+						<div class="ui left floated small pagination menu" ng-if='dataset.data.table.canPage'>
+							<a class="icon item" ng-show='dataset.pagination.before' ng-click='dataset.clickBefore()'><i class="left chevron icon"></i></a>
+							<a class="item" ng-repeat='entry in dataset.pagination.pages' ng-click='dataset.clickPage(entry.number,entry.real)' ng-class='{active:entry.active}' data-page='{{entry.number}}'>{{entry.number}}</a>
+							<a class="icon item" ng-show='dataset.pagination.after' ng-click='dataset.clickAfter()'><i class="right chevron icon"></i></a>
+						</div>
+						<button id='btnAdd' class="ui right labeled icon right floated green button" ng-click='dataset.displayAdd($event)' ng-show='dataset.data.table.canAdd'>
+							<i class="right plus icon"></i> New {{dataset.data.subject_ucf}}
+						</button>
+					</th>
+				</tr>
+			</tfoot>			
+		</table>
+
+		<div id='delete-wrapper' style='display:none'>
+			<div id='delete-warning' class='identifier-box'>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id='modalForm' ref-modal='{{dataset.data.code_modal}}' class="ui small modal form">
+	<div class="header">
+		<span ng-hide='dataset.form.id'>New {{dataset.data.subject_ucf}}</span>
+		<span ng-show='dataset.form.id'>Edit {{dataset.data.subject_ucf}}</span>
+	</div>
+	<div class="content">
+		<form ng-submit='dataset.submitModal($event)' class='ui form'>
+			<ng-transclude ng-transclude-slot='modal'></ng-transclude>
+			<input type='submit' class='ui hidden' />
+		</form>
+	</div>
+	<div class="actions">
+		<button class="ui positive right labeled icon button" ng-class='{loading:dataset.loading}' type='submit'>Submit <i class="checkmark icon"></i></button>
+		<button class="ui black deny button" ng-class='{disabled:dataset.loading}'>Cancel</button>
+	</div>
+</div>

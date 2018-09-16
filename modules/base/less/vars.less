@@ -1,0 +1,42 @@
+// ===============================================================
+// MIXERS
+// ===============================================================
+
+.gradient(@type; @colors; @dir: 0deg; @prefixes: webkit, moz, ms, o; @index: length(@prefixes)) when (@index > 0) {
+    .gradient(@type; @colors; @dir; @prefixes; (@index - 1)); 
+    @prefix  : extract(@prefixes, @index);
+    @dir-old : 90 - (@dir); 
+    background-image: ~"-@{prefix}-@{type}-gradient(@{dir-old}, @{colors})";
+  	& when ( @index = length(@prefixes) ) {
+        background-image: ~"@{type}-gradient(@{dir}, @{colors})";
+    }
+}
+
+.outline(@color, @size: 1px) {
+	filter: drop-shadow(@size @size 0px @color) drop-shadow(-@size -@size 0px @color) drop-shadow(@size -@size 0px @color) drop-shadow(-@size @size 0px @color);
+}
+
+.stroke(@color) {
+	text-shadow: -1px -1px 1px @color, 1px -1px 1px @color, -1px 1px 1px @color, 1px 1px 1px @color;
+};
+
+// ===============================================================
+// VARIABLES
+// ===============================================================
+
+@mainColor: #5d2c6d;
+@widthDate: 110px;
+@widthDateBig: 140px;
+
+
+@negative: #ff5722;
+@positive: #009688;
+
+.main-gradient {
+	.gradient(linear; #5d2c6d, #b8a3bf; 0deg);
+}
+
+.main-gradient-active {
+	.gradient(linear; #b154cf, #cf96e1; 0deg);
+}
+
