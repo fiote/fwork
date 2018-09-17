@@ -41,6 +41,8 @@ const babelPresets = ['stage-0','env'];
 // ==============================================
 
 const lessFiles = 'modules/*/less/*.less';
+const lessApp = 'modules/app.less';
+
 const cleancssOptions = {
 	compatibility: 'ie11',
 	rebase: false,
@@ -125,7 +127,7 @@ gulp.task('bundle-js',function() {
 // ==============================================
 
 gulp.task('bundle-less',function() {
-	gulp.src([lessFiles])
+	gulp.src([lessApp,lessFiles])
 		.pipe(less())
 		.on('error',logErrorCSS)
     	.pipe(cleancss(cleancssOptions))
@@ -171,6 +173,6 @@ gulp.watch([jsFiles,jsRoutes,jsApp]).on('change',() => {
 	gulp.run('bundle-js');
 });
 
-gulp.watch(lessFiles).on('change',() => {
+gulp.watch([lessApp,lessFiles]).on('change',() => {
 	gulp.run('bundle-less');
 });
